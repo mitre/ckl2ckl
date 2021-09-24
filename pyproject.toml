@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "ckl2ckl"
+version = "0.1.0"
+description = ""
+authors = ["Amndeep Singh Mann <amann@mitre.org>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+[tool.poetry.scripts]
+ckl2ckl = "ckl2ckl.translate:main"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
