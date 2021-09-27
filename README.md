@@ -39,6 +39,7 @@ Please feel free to contact us by **opening an issue** on the issue board, or, a
 
 ### Authors
 - Amndeep Singh Mann [amann@mitre.org](mailto:amann@mitre.org)
+- Camden Moors [cmoors@mitre.org](mailto:cmoors@mitre.org)
 
 ### NOTICE
 
