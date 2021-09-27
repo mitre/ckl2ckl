@@ -25,22 +25,35 @@ def main():
                 old_vulns[attribute_data.text.partition('r')[0]] = vuln
 
     # find the legacy id of the correct form so as to match the new vuln with an old one
+    used_old_vulns = set()
     new_root = new.getroot()
     for vuln in new_root.findall('./STIGS/iSTIG/VULN'):
+        found_sv_flag = False
         for s_d in vuln.findall('./STIG_DATA'):
             vuln_attribute, attribute_data = list(s_d)
             if vuln_attribute.text == 'LEGACY_ID':
                 if not attribute_data.text or len(attribute_data.text) < 2 or not attribute_data.text[0:2] == 'SV':
-                    print('Vuln_Num', vuln.findall('./STIG_DATA')[0][1].text, 'has no legacy ids starting with "SV" listed')
                     continue
+                found_sv_flag = True
 
                 if not attribute_data.text in old_vulns.keys():
-                    print('Legacy ID', attribute_data.text, 'not found in the old CKL')
+                    print(vuln.findall('./STIG_DATA')[3][1].text, 'had a legacy ID', attribute_data.text, 'that was not found in the old CKL')
                     continue
 
                 # then put the old data in the new file
                 vuln.find('./STATUS').text = old_vulns[attribute_data.text].find('./STATUS').text
                 vuln.find('./FINDING_DETAILS').text = old_vulns[attribute_data.text].find('./FINDING_DETAILS').text
+
+                if vuln.findall('./STIG_DATA')[8][1].text != old_vulns[attribute_data.text].findall('./STIG_DATA')[8][1].text:
+                    print('Check text does not match between', vuln.findall('./STIG_DATA')[3][1].text, 'and', attribute_data.text, 'but data still transferred')
+                if vuln.findall('./STIG_DATA')[9][1].text != old_vulns[attribute_data.text].findall('./STIG_DATA')[9][1].text:
+                    print('Fix text does not match between', vuln.findall('./STIG_DATA')[3][1].text, 'and', attribute_data.text, 'but data still transferred')
+
+                used_old_vulns.add(attribute_data.text)
+        if not found_sv_flag:
+            print(vuln.findall('./STIG_DATA')[3][1].text, 'has no legacy ids starting with "SV" listed')
+    if (diff := set(old_vulns.keys()).difference(used_old_vulns)):
+        print('The following rules did not have any data transferred to the new CKL:', sorted(diff))
 
     new.write(args.result_path, encoding='utf8')
 

@@ -24,6 +24,7 @@ Tool to translate findings from older to newer versions of a Checklist.
 
 ## How to use:
 1. Run the script: `poetry run ckl2ckl old_path new_path result_path` where old_path is the path to the old CKL file, new_path is the path to the new CKL file, and result_path is the path to where you'd like to save the CKL file
+2. Verify the accuracy of the resultant CKL file - the script will create a potentially substantial number of logs to help with this
 
 ## Contributing, Issues and Support
 
