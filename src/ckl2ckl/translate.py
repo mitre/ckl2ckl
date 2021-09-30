@@ -55,7 +55,7 @@ def main():
     if (diff := set(old_vulns.keys()).difference(used_old_vulns)):
         print('The following rules did not have any data transferred to the new CKL:', sorted(diff))
 
-    new.write(args.result_path, encoding='utf8')
+    new.write(args.result_path, xml_declaration=True, encoding='UTF-8') #, short_empty_elements=False)
 
 if __name__ == "__main__":
     main()
