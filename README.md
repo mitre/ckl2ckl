@@ -25,6 +25,7 @@ Tool to translate findings from older to newer versions of a Checklist.
 ## How to use:
 1. Run the script: `poetry run ckl2ckl old_path new_path result_path` where old_path is the path to the old CKL file, new_path is the path to the new CKL file, and result_path is the path to where you'd like to save the CKL file
 2. Verify the accuracy of the resultant CKL file - the script will create a potentially substantial number of logs to help with this
+3. It may be necessary to add a comment underneath the XML declaration / above the CHECKLIST tag (visible if you open it in a text editor as opposed to STIGVIEWER) along the lines of something that will look similar to `<!--DISA STIG Viewer :: 2.11-->` but with that exact version number changing depending on your use case.
 
 ## Contributing, Issues and Support
 
