@@ -4,7 +4,8 @@ Tool to translate findings from older to newer versions of a Checklist.
 ## How to install:
 1. Install dependencies: Python 3.9 and [Poetry](https://python-poetry.org/)
 2. Clone the repository: `git clone https://github.com/mitre/ckl2ckl`
-3. Install application: `poetry install`
+3. Move into the new directory: `cd path/to/ckl2ckl`
+4. Install application: `poetry install`
 
 ## How to update:
 
@@ -23,8 +24,8 @@ Tool to translate findings from older to newer versions of a Checklist.
 4. Install dependencies: `poetry install`
 
 ## How to use:
-1. Run the script: `poetry run ckl2ckl old_path new_path result_path` where old_path is the path to the old CKL file, new_path is the path to the new CKL file, and result_path is the path to where you'd like to save the CKL file
-2. Verify the accuracy of the resultant CKL file - the script will create a potentially substantial number of logs to help with this
+1. Run the script: `poetry run ckl2ckl old_path new_path result_path` where old_path is the path to the old and filled out CKL file, new_path is the path to the new and empty CKL file, and result_path is the path to where you'd like to save the CKL file (make sure to name the file and add `.ckl` as the file extension).
+2. Verify the accuracy of the resultant CKL file - the script will create a potentially substantial number of logs to help with this.
 3. It may be necessary to add a comment underneath the XML declaration / above the CHECKLIST tag (visible if you open it in a text editor as opposed to STIGVIEWER) along the lines of something that will look similar to `<!--DISA STIG Viewer :: 2.11-->` but with that exact version number changing depending on your use case.
 4. It may be necessary to change other data within the file - for example the revision numbers of the SV numbers - in order to have other software accept it.
 
